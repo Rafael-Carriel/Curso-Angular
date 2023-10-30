@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  angular-meat-app:
+    platform: linux/amd64
+    build:
+      context: ./
+    restart: always
+    container_name: angular-meat-app
+    ports:
+      - 4200:4200
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
