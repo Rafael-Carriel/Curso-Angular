@@ -17,8 +17,8 @@ export class MenuComponent implements OnInit {
     this.menu = this.restaurantsService.menuOfRestaurant(this.route.parent.snapshot.params['id'])
   }
 
-  addMenuItem(item:MenuItem){
-    console.log(item)
-  }
+  // addMenuItem(item:MenuItem){
+  //   console.log(item)
+  // }
 
 }
