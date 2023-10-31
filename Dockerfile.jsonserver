@@ -1,0 +1,14 @@
+
+FROM node:8
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install -g json-server
+
+# Expõe a porta 3000
+EXPOSE 3000
+
+# Comando padrão para iniciar o json-server
+CMD ["json-server", "db.json"]
