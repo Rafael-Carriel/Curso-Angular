@@ -3,7 +3,7 @@ services:
   angular-meat-app:
     build:
       context: ./
-      dockerfile: Dockerfile.angular
+      dockerfile: Dockerfile
     restart: always
     container_name: angular-meat-app
     ports:
@@ -12,15 +12,3 @@ services:
       - type: bind
         source: ./
         target: /app
-  # json-server:
-  #   build:
-  #     context: ./
-  #     dockerfile: Dockerfile.jsonserver
-  #   restart: always
-  #   container_name: jsonserver
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - type: bind
-  #       source: ./
-  #       target: /app
