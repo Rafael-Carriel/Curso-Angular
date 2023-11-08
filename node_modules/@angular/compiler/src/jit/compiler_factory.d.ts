@@ -23,4 +23,4 @@ export declare class JitCompilerFactory implements CompilerFactory {
  *
  * @experimental
  */
-export declare const platformCoreDynamic: (extraProviders?: Provider[] | undefined) => PlatformRef;
+export declare const platformCoreDynamic: (extraProviders?: Provider[]) => PlatformRef;
