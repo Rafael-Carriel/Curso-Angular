@@ -5,7 +5,7 @@ import { CartItem } from 'app/restaurant-detail/shooping-cart/cart-item.model';
 import { OrderItemsComponent } from './order-items/order-items.component';
 import { Order, OrderItem } from './order.model';
 import { Router } from '@angular/router';
-import { AbstractControl, FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angular/forms';
 import 'rxjs/add/operator/do'
 
 @Component({
@@ -33,15 +33,17 @@ export class OrderComponent implements OnInit {
   constructor(private orderService: OrderService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.orderForm = this.formBuilder.group({
-      name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+    this.orderForm = new FormGroup({
+      name: new FormControl('', {
+        validators: [Validators.required, Validators.minLength(5)],
+      }),
       email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
       emailConfirmation: this.formBuilder.control('',[Validators.required, Validators.pattern(this.emailPattern)]),
       address: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
       number: this.formBuilder.control('', [Validators.required,Validators.pattern(this.numberPattern)]),
       optionalAddress: this.formBuilder.control(''),
       paymentOption: this.formBuilder.control('', [Validators.required])
-    },  {validator: OrderComponent.equalsTo})
+    },  {validators: [OrderComponent.equalsTo], updateOn: 'blur'})
   }
 
   static equalsTo(group: AbstractControl): {[key: string]: boolean}{
